@@ -55,7 +55,7 @@ public_application_func (){
      "7")
        notify-send -t 1000 "نصب Shutter"
        notify-send -t 1000 "رمز حساب کاربری خود را وارد کنید"
-       sudo apt -y install Shutter
+       sudo apt -y install shutter
        notify_func;;
      "8")
        notify-send -t 1000 "نصب cdo"
