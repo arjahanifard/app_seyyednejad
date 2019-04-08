@@ -26,7 +26,7 @@ public_application_func (){
         notify-send -t 1000 "رمز حساب کاربری خود را وارد کنید"
         #gerp_pip2=`dpkg -l|grep -i "pip"|grep -i "python2"`
         #grep_pip3=`dpkg -l|grep -i "pip"|grep -i "python3"`
-        sudo apt -y install pip python-pip
+        sudo apt -y install python3-pip python-pip
         notify_func;;
       "3")
         notify-send -t 1000 "نصب anaconda2"
