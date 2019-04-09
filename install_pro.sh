@@ -31,7 +31,7 @@ public_application_func (){
       "3")
         notify-send -t 1000 "نصب anaconda2"
         cd ~
-        wget https://repo.continuum.io/archive/Anaconda2-4.2.0-Linux-x86_64.sh
+        wget https://repo.continuum.io/archive/Anaconda2-*-Linux-x86_64.sh
         bash Anaconda2-4.2.0-Linux-x86_64.sh -b -p ~/anaconda
         rm Anaconda2-4.2.0-Linux-x86_64.sh
         echo 'export PATH="~/anaconda/bin:$PATH"' >> ~/.bashrc
@@ -82,6 +82,53 @@ public_application_func (){
        sudo perl install-tl
        sudo apt install -y texstudio
        notify_func;;
+    "11")
+       notify-send -t 1000 "نصب tor"
+       read -p "Do you have a tour?(y/n)" install_tor
+       if [ "$install_tor"  == "n" ];then
+         sudo apt install tor obfs4proxy obfsproxy privoxy torsocks
+         sudo systemctl enable tor.service
+         sudo systemctl start tor.service
+         sudo systemctl enable privoxy.service
+         sudo systemctl start privoxy.service
+         sudo echo "[Unit]
+Description=Anonymizing overlay network for TCP (multi-instance-master)
+
+[Service]
+User=debian-tor
+Type=simple
+RemainAfterExit=yes
+ExecStart=/usr/bin/tor -f /etc/tor/torrc
+ExecReload=/usr/bin/kill -HUP $MAINPID
+KillSignal=SIGINT
+LimitNOFILE=8192
+PrivateDevices=yes
+
+[Install]
+WantedBy=multi-user.target"  > /etc/systemd/system/multi-user.target.wants/tor.service
+        sudo systemctl daemon-reload
+        sudo systemctl restart tor.service
+        sudo echo "UseBridges 1
+ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy
+Bridge obfs4 104.168.175.42:443 F369D235DFAE703DBD6DDF7FEF4CB945B06CE152 cert=GrDMVEjlYGznY5Qb6v36q4ILPYmocekLSZsZhi1zLVC6p740xJzs5Y02lVbe6H1m/Vw3Yg iat-mode=0
+Bridge obfs4 87.149.111.72:36693 6DB3073771FAE9A49C2DDBDA84E3F150007E7E6A cert=aIMKw+in93NYz9imrFxmGoS4ivVBV0AkbW4GjfPKi85HoWwouUegHYhWFhmLcsrDbsq1WQ iat-mode=0
+" >> /etc/tor/torrc
+        notify-send -t 2000 "در صورت قطع شدن یا عدم اتصال به تور"
+        notify-send -t 2000 "برای دریافت پل جمله پیام بعدی را"
+        notify-send -t 2000 "get transport obfs4"
+        notify-send -t 2000 "به ایمیل که در پیام بعدی نمایش داده میشود ارسال کنید"
+        notify-send -t 2000 "bridges@torproject.org"
+        notify-send -t 2000 "در صورت نصب بودن تور و عدم اتصال"
+        notify-send -t 2000 "حتما از مرحله ۱۲ استفاده بکنید"
+        sudo echo " forward-socks5t / 127.0.0.1:9050 ." >> /etc/privoxy/config
+        sudo systemctl enable privoxy.service
+        sudo systemctl start privoxy.service
+      else
+        notify-send -t 2000 "از مرحله ۱۲ استفاده بکنید"
+        public_application_func
+      fi;;
+  "12")
+  echo "update";;
    esac
    read -p "You want to exit the application(y/n)" exit_application
 done
