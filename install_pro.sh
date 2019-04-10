@@ -1,7 +1,7 @@
 #!/bin/bash
 #alireza jahani fard
 #email:alireza@jahanifard.ir
-#ver:1.0
+#ver:2.2
 clear
 notify_func (){
   if [ "$?" == "0" ];then
@@ -32,8 +32,8 @@ public_application_func (){
         notify-send -t 1000 "نصب anaconda2"
         cd ~
         wget https://repo.continuum.io/archive/Anaconda2-*-Linux-x86_64.sh
-        bash Anaconda2-4.2.0-Linux-x86_64.sh -b -p ~/anaconda
-        rm Anaconda2-4.2.0-Linux-x86_64.sh
+        bash Anaconda2-*-Linux-x86_64.sh -b -p ~/anaconda
+        rm Anaconda2-*-Linux-x86_64.sh
         echo 'export PATH="~/anaconda/bin:$PATH"' >> ~/.bashrc
         source .bashrc
         conda update conda;;
@@ -151,7 +151,7 @@ virtualenviroment_func (){
           sudo virtualenv -p /usr/bin/python2.7 env1_PHDNet
           source env1_PHDNet/bin/activate
           pip install nglpy
-          pip install PyNIO
+          conda install -c conda-forge pynio
           pip install python-igraph
           pip install weave
           pip install netCDF4
