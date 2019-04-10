@@ -1,7 +1,7 @@
 #!/bin/bash
 #alireza jahani fard
 #email:alireza@jahanifard.ir
-#ver:2.2
+#ver:2.3
 clear
 notify_func (){
   if [ "$?" == "0" ];then
@@ -31,7 +31,7 @@ public_application_func (){
       "3")
         notify-send -t 1000 "نصب anaconda2"
         cd ~
-        wget https://repo.continuum.io/archive/Anaconda2-*-Linux-x86_64.sh
+        wget https://repo.continuum.io/archive/Anaconda2-2019.03-Linux-x86_64.sh
         bash Anaconda2-*-Linux-x86_64.sh -b -p ~/anaconda
         rm Anaconda2-*-Linux-x86_64.sh
         echo 'export PATH="~/anaconda/bin:$PATH"' >> ~/.bashrc
