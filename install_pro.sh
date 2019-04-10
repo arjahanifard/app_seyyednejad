@@ -147,9 +147,22 @@ virtualenviroment_func (){
     case "$step" in
       "1")
           notify-send -t 1000 "فعال سازی محیط ایزوله"
+          sudo apt-get install libgeos-dev
           sudo virtualenv -p /usr/bin/python2.7 env1_PHDNet
           source env1_PHDNet/bin/activate
-          pip install nglpy pynio python-igraph weave netCDF4 mpi4py sphinx pyunicorn proj4 numpy scipy basemap matplotlib
+          pip install nglpy
+          pip install PyNIO
+          pip install python-igraph
+          pip install weave
+          pip install netCDF4
+          pip install mpi4py
+          pip install Sphinx
+          pip install pyunicorn
+          conda install -c conda-forge proj4
+          pip install numpy
+          pip install scipy
+          pip install --user https://github.com/matplotlib/basemap/archive/master.zip
+          pip install matplotlib
           notify_func;;
       "2")
           notify-send -t 1000 "فعال سازی محیط ایزوله"
@@ -189,7 +202,7 @@ home_application_func (){
       "1")
         public_application_func;;
       "2")
-        echo "update";;
+        virtualenviroment_func;;
       "3")
         exit
    esac
