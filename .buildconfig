@@ -1,0 +1,11 @@
+[default]
+name=Default
+runtime=host
+toolchain=default
+config-opts=
+run-opts=
+prefix=/home/phoenix/.var/app/org.gnome.Builder/cache/gnome-builder/install/app_seyyednejad/host
+app-id=
+postbuild=
+prebuild=
+default=true

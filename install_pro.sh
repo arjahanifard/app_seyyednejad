@@ -1,7 +1,7 @@
 #!/bin/bash
 #alireza jahani fard
 #email:alireza@jahanifard.ir
-#ver:2.3
+#ver:2.4
 clear
 notify_func (){
   if [ "$?" == "0" ];then
@@ -147,6 +147,12 @@ install_python_pack (){
           #sudo apt-get install libgeos-dev
           #sudo virtualenv -p /usr/bin/python2.7 env1_PHDNet
           #source env1_PHDNet/bin/activate
+          sudo apt install python3-pip
+          python3 -m pip install -U matplotlib
+          sudo apt install git
+          sudo apt-get install libgeos-3.6.2 libgeos-c1v5 libgeos-dev
+          pip3 install --upgrade --user matplotlib numpy pyproj pyshp OWSLib Pillow
+	  sudo apt-get install python-mpltoolkits.basemap
           sudo pip3 install nglpy
           sudo conda install -c conda-forge pynio
           sudo pip3 install python-igraph
