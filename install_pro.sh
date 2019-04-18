@@ -41,6 +41,7 @@ public_application_func (){
        notify-send -t 1000 "نصب محیط ایزوله پایتون"
        notify-send -t 1000 "رمز حساب کاربری خود را وارد کنید"
        pip install virtualenv
+       pip3 install virtualenv
        notify_func;;
      "5")
        notify-send -t 1000 "نصب curl"
@@ -139,62 +140,34 @@ exit_application_func (){
     home_application_func
   fi
 }
-virtualenviroment_func (){
-  echo -e "select number:\n1)env1_PHDNet\t2)env2_pik\t3)env3_pik\t4)env4_R\t5)env5_gis"
-  exit_application="n"
-  while [ "$exit_application" == "n" ];do
-    read -p "enter one a number: " step
-    case "$step" in
-      "1")
-          notify-send -t 1000 "فعال سازی محیط ایزوله"
-          sudo apt-get install libgeos-dev
-          sudo virtualenv -p /usr/bin/python2.7 env1_PHDNet
-          source env1_PHDNet/bin/activate
-          pip install nglpy
-          conda install -c conda-forge pynio
-          pip install python-igraph
-          pip install weave
-          pip install netCDF4
-          pip install mpi4py
-          pip install Sphinx
-          pip install pyunicorn
-          conda install -c conda-forge proj4
-          pip install numpy
-          pip install scipy
-          pip install --user https://github.com/matplotlib/basemap/archive/master.zip
-          pip install matplotlib
+install_python_pack (){
+	exit_application="n"
+	while { "$exit_application" == "y" };do
+          notify-send -t 1000 "نصب پیکیج های پایتون"
+          #sudo apt-get install libgeos-dev
+          #sudo virtualenv -p /usr/bin/python2.7 env1_PHDNet
+          #source env1_PHDNet/bin/activate
+          sudo pip3 install nglpy
+          sudo conda install -c conda-forge pynio
+          sudo pip3 install python-igraph
+          sudo pip3 install weave
+          sudo pip3 install netCDF4
+          sudo pip3 install mpi4py
+          sudo pip3 install Sphinx
+          sudo pip3 install pyunicorn
+          sudo conda install -c conda-forge proj4
+          sudo pip3 install numpy
+          sudo pip3 install scipy
+          sudo pip3 install --user https://github.com/matplotlib/basemap/archive/master.zip
+          sudo pip3 install matplotlib
           notify_func;;
-      "2")
-          notify-send -t 1000 "فعال سازی محیط ایزوله"
-          sudo python3 -m venv env2_pik
-          source env2_pik/bin/activate
-          pip install time proj4 numpy scipy basemap matplotlib mpmath sys sklearn basemap_fct mpl_toolkits.basemap pylab netCDF4 powerlaw fitting_functions lagcorr cython_func windspharm
-          notify_func;;
-      "3")
-        notify-send -t 1000 "فعال سازی محیط ایزوله"
-        sudo python3 -m venv env3_pik
-        source env3_pik/bin/activate
-        pip install env1_PHDNet env2_pik
-        notify_func;;
-      "4")
-        notify-send -t 1000 "فعال سازی محیط ایزوله"
-        sudo python3 -m venv env4_R
-        source env4_R/bin/activate
-        pip install R Rstudio Hmisc lattice survival Formula ggplot2 ggfortify Scale plotly xlsx robustbase rJava xlsxjars cvTools ncdf4 sp raster climwin
-        notify_func;;
-      "5")
-        notify-send -t 1000 "فعال سازی محیط ایزوله"
-        sudo python3 -m venv env5_gis
-        source env5_gis/bin/activate
-        pip install arcgis netCDF4 glob sys os
-        notify_func;;
-   esac
-   read -p "You want to exit the application(y/n)" exit_application
-done
-exit_application_func
+          read -p "You want to exit the application(y/n)" exit_application
+        done
+	exit_application_func
 }
+
 home_application_func (){
-  echo -e "select number:\n1)install public software\t2)install virtual env\t3)exit application"
+  echo -e "select number:\n1)install public software\t2)install python pack\t3)exit application"
   exit_application="n"
   while [ "$exit_application" == "n" ];do
     read -p "enter one a number: " step
